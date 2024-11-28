@@ -25,10 +25,21 @@
         }
 
         nav {
+            background-color: #444;
             text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
             color: #fff;
+            text-decoration: none;
             margin: 0 15px;
-            font-size: 1.2rem;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            background-color: #555;
+            border-radius: 5px;
         }
 
         .container {
@@ -46,6 +57,65 @@
         .container p {
             line-height: 1.6;
         }
+
+        #skills ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .project a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .project a:hover {
+            text-decoration: underline;
+        }
+
+        section#cta a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        section#cta a:hover {
+            background-color: #005bb5;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
     </style>
 </head>
 
@@ -57,16 +127,65 @@
     <nav>
         <a href="#about">About Me</a>
         <a href="#portfolio">Portfolio</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
 
+    <div class="container" id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello! I'm Zack Ellis, a junior studying Computer Science. I'm passionate about software development, quantum physics, and working on exciting space-related projects.
+        </p>
+    </div>
+    <div class="container" id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>Text-Based Horror Game</h3>
+                <p>
+                    A survival horror game built in Python. It features a branching narrative, 
+                    multiple endings, and a challenging gameplay mechanics that immerse players in a spooky atmosphere.
+                </p>
+                <a href="https://github.com/BoKay69/Survival-Horror-Project.git" target="_blank">View on GitHub</a>
+            </div>
+            <div class="project">
+                <h3>Assembly and C++ Calculator</h3>
+                <p>
+                    A calculator program developed using Assembly and C++ that performs basic arithmetic operations. 
+                    It demonstrates efficient integration of low-level and high-level programming languages.
+                </p>
+                <a href="https://github.com/kronkt/Project-1---CS-1400.git" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="skills">
+        <h2>Technical Skills</h2>
+        <ul>
+            <li>C++, Python, Assembly, HTML, JavaScript, and CSS</li>
+            <li>Cybersecurity Certification</li>
+            <li>Web Development (HTML, CSS, JavaScript)</li>
+            <li>GUI Development with Tkinter</li>
+        </ul>
+    </div>
+
+    <div class="container" id="cta">
+        <h2>Work With Me</h2>
+        <p>
+            I'm always looking for exciting projects to collaborate on. Whether you're hiring or need a partner for a creative project, feel free to reach out!
+        </p>
+        <a href="mailto:zack.ellis132@gmail.com">Get in Touch</a>
+    </div>
+
     <div class="container" id="contact">
         <h2>Contact</h2>
-        <p>
-            If you would like to get in touch with me, you can reach me at:
-        </p>
+        <p>If you would like to get in touch with me, you can reach me at:</p>
         <p>Email: <a href="mailto:zack.ellis132@gmail.com">zack.ellis132@gmail.com</a></p>
         <p>Phone: (720) 300-8393</p>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Zack Ellis. All rights reserved.</p>
+    </footer>
 </body>
 </html>
