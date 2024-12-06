@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             overflow-y: auto;
+            cursor: none; /* Hide the default cursor */
         }
 
         header {
@@ -76,59 +77,32 @@
             line-height: 1.6;
         }
 
-        #skills ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .project {
-            border: 1px solid #ff0000;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-            background-color: #222;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-        }
-
-        .project a {
-            color: #ff5555;
-            text-decoration: none;
-        }
-
-        .project a:hover {
-            text-decoration: underline;
-        }
-
         footer {
             background-color: #111;
             color: #ff0000;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
 
-        .cursor-tail {
+        /* Rainbow trail styling */
+        .trail {
             position: absolute;
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(128,0,0,0.5) 80%);
             pointer-events: none;
-            z-index: 9999;
-            opacity: 0.8;
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
         }
     </style>
 </head>
@@ -153,40 +127,32 @@
 
     <div class="container" id="portfolio">
         <h2>Portfolio</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Text-Based Horror Game</h3>
-                <p>
-                    A survival horror game built in Python. It features a branching narrative, 
-                    multiple endings, and challenging gameplay mechanics that immerse players in a spooky atmosphere.
-                </p>
-                <a href="https://github.com/BoKay69/Survival-Horror-Project.git" target="_blank">View on GitHub</a>
-            </div>
-            <div class="project">
-                <h3>Assembly and C++ Calculator</h3>
-                <p>
-                    A calculator program developed using Assembly and C++ that performs basic arithmetic operations. 
-                    It demonstrates efficient integration of low-level and high-level programming languages.
-                </p>
-                <a href="https://github.com/kronkt/Project-1---CS-1400.git" target="_blank">View on GitHub</a>
-            </div>
-        </div>
+        <p>Here are a few of my favorite projects:</p>
+        <ul>
+            <li><strong>Survival Horror Game:</strong> A text-based horror game designed to test survival instincts and wits.</li>
+            <li><strong>Calculator Project:</strong> A program combining Assembly and C++ to perform basic arithmetic.</li>
+            <li><strong>Portfolio Website:</strong> This interactive site showcasing my work.</li>
+        </ul>
     </div>
 
     <div class="container" id="skills">
-        <h2>Technical Skills</h2>
+        <h2>Skills</h2>
         <ul>
-            <li>C++, Python, Assembly, HTML, JavaScript, and CSS</li>
-            <li>Cybersecurity Certification</li>
-            <li>Web Development (HTML, CSS, JavaScript)</li>
-            <li>GUI Development with Tkinter</li>
+            <li>Proficient in Python and C++</li>
+            <li>Experienced with Assembly Language</li>
+            <li>Web Development with HTML, CSS, and JavaScript</li>
+            <li>Certified in Cybersecurity</li>
+            <li>Docker Containerization</li>
         </ul>
     </div>
 
     <div class="container" id="contact">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:zack.ellis132@gmail.com">zack.ellis132@gmail.com</a></p>
-        <p>Phone: (720) 300-8393</p>
+        <p>Feel free to reach out to me via:</p>
+        <ul>
+            <li>Email: <a href="mailto:zack.ellis132@gmail.com">zack.ellis132@gmail.com</a></li>
+            <li>GitHub: <a href="https://github.com/BoKay69" target="_blank">BoKay69</a></li>
+        </ul>
     </div>
 
     <footer>
@@ -194,26 +160,26 @@
     </footer>
 
     <script>
-        const tailElements = [];
-        const maxTailLength = 20;
+        const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'];
+        let colorIndex = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            const tail = document.createElement('div');
-            tail.className = 'cursor-tail';
-            tail.style.left = `${e.pageX}px`;
-            tail.style.top = `${e.pageY}px`;
-            document.body.appendChild(tail);
-            tailElements.push(tail);
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.classList.add('trail');
+            trail.style.left = `${x}px`;
+            trail.style.top = `${y}px`;
+            trail.style.backgroundColor = colors[colorIndex];
+            document.body.appendChild(trail);
 
-            if (tailElements.length > maxTailLength) {
-                const oldTail = tailElements.shift();
-                oldTail.remove();
-            }
+            colorIndex = (colorIndex + 1) % colors.length;
 
             setTimeout(() => {
-                tail.style.opacity = '0';
-                tail.remove();
-            }, 300);
+                trail.remove();
+            }, 1000);
+        }
+
+        document.addEventListener('mousemove', (event) => {
+            createTrail(event.clientX, event.clientY);
         });
     </script>
 </body>

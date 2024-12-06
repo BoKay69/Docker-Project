@@ -1,8 +1,10 @@
-FROM httpd:latest
+# Use a lightweight Node.js image
+FROM nginx:latest
 
-LABEL maintainer="zack.ellis132@gmail.com"
+# Copy files to the Nginx HTML folder
+COPY . /usr/share/nginx/html
 
-COPY index.html /usr/local/apache2/htdocs/
-
+# Expose port 80
 EXPOSE 80
+
 
